@@ -1,4 +1,15 @@
-from distutils.core import setup
-setup(name='Sly',
-      version='0.0.1',
-      py_modules=['sly'])
+from cx_Freeze import setup, Executable
+
+# Dependencies are automatically detected, but it might need
+# fine tuning.
+buildOptions = dict(packages = [], excludes = [])
+
+executables = [
+    Executable('sly.py', 'Console')
+]
+
+setup(name='sly',
+      version = '0.0.1',
+      description = 'Player for vk',
+      options = dict(build_exe = buildOptions),
+      executables = executables)

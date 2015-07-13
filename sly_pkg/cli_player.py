@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 import subprocess
 import re
 import math
@@ -81,7 +84,7 @@ class c(object):
     r, g, y, b, p, w = red, green, yellow, blue, pink, white
 
 
-def play_range(songlist, shuffle=False, repeat=False):
+def play_range(songlist, shuffle=True, repeat=False):
     """ Play a range of songs, exit cleanly on keyboard interrupt. """
 
     if shuffle:
@@ -357,7 +360,7 @@ def generate_songlist_display(song=False):
 
 
 def logo(col=None, version=""):
-    """ Return text logo. """
+    """ Return         text logo. """
 
     col = col if col else random.choice((c.g, c.r, c.y, c.b, c.p, c.w))
     LOGO = col + """\
@@ -418,10 +421,10 @@ def uea_rpad(num, t):
 def xprint(stuff, end=None):
     """ Compatible print. """
 
-    print(xenc(stuff), end=end)
+    print(xenc(stuff))
 
 
-def xenc(stuff):
+def xenc(stuff, end=None):
     """ Replace unsupported characters. """
     stuff = utf8_replace(stuff) if not_utf8_environment else stuff
     return stuff
@@ -440,7 +443,7 @@ def F(key, nb=0, na=0, percent=r"\*", nums=r"\*\*", textlib=None):
     nb, na indicate newlines before and after to return
     percent is the delimter for %s
     nums is the delimiter for the str.format command (**1 will become {1})
-    textlib is the dictionary to use (defaults to g.text if not given)
+    textlib is the dictionary to use (defaults to g.        text if not given)
     """
 
     textlib = textlib or g.text
@@ -458,6 +461,6 @@ def F(key, nb=0, na=0, percent=r"\*", nums=r"\*\*", textlib=None):
         text = re.sub(r"%s" % percent, r"%s", text)
         text = text % percent_fmt
 
-    text = re.sub(r"&&", r"%s", text)
+        text = re.sub(r"&&", r"%s", text)
 
     return "\n" * nb + text + c.w + "\n" * na
